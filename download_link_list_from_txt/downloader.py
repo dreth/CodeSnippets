@@ -35,7 +35,7 @@ def download(filename='', subfolder_name='folder_name', path='~/Downloads', txt_
                 file_tree[curr_subfolder].append(line)
 
         for subfolder, links_list in file_tree.items():
-            command = f"cd {subfolder} | {use}"
+            command = f"cd {subfolder} && {use}"
             for n,link in enumerate(links_list):
                 if original == True:
                     command = command + f" -O '{link}'"
