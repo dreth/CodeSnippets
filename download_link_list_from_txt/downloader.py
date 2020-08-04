@@ -52,4 +52,15 @@ def download(filename='', subfolder_name='folder_name', path='~/Downloads', txt_
                 command = command + f" -o '{filename}_{n}' {link}"
         os.system(f"cd {path} && {command}")
 
-download()
+
+params = {
+    'filename':''
+    ,'subfolder_name':'folder_name'
+    ,'path':'~/Downloads'
+    ,'txt_name':'txt'
+    ,'use':"curl"
+    ,'mkdirs':False
+    ,'original':True
+}
+
+download(**params)
