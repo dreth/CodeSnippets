@@ -55,11 +55,11 @@ def download(filename='', subfolder_name='folder_name', path='~/Downloads', txt_
 
 params = {
     'filename':''
-    ,'subfolder_name':'folder_name'
+    ,'subfolder_name':'lezen_lingua'
     ,'path':'~/Downloads'
     ,'txt_name':'txt'
     ,'use':"curl"
-    ,'mkdirs':False
+    ,'mkdirs':True
     ,'original':True
 }
 
