@@ -11,15 +11,24 @@ def convert(path, ffrom, fto, use='ffmpeg'):
     use = engine to use, default is ffmpeg
     """
     # formats
-    formats = [x for x in map(''.join, itertools.product(*zip(fto.upper(), fto.lower())))]
+    formats = [x for x in map(''.join, itertools.product(*zip(ffrom.upper(), ffrom.lower())))]
 
     # file list and filter files with such format
-    file_list = os.listdir(path)
-    file_list = [x for x in file_list if x[-4:] in formats]
+    lstdr = os.listdir(path)
+    file_list = []
+    for f in lstdr:
+        try:
+            if f.split('.')[1] in formats:
+                file_list.append(f)
+        except:
+            continue
 
     os.system('mkdir ./conversion')
     for f in file_list:
-        if use == 'ffmpeg':
-            os.system(f'{use} -i {f}{ffrom.lower()} ./conversion/{f}{fto.lower()}')
+        f = f.split('.')[0]
+        if use == 'ffmpeg': 
+            os.system(f'{use} -i "./{f}.{ffrom.lower()}" "./conversion/{f}.{fto.lower()}"')
     
     print('\nDone!\n')
+
+convert('./','webp', 'png')
