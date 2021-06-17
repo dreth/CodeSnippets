@@ -81,7 +81,7 @@ def simulate_curves(functions, reward=1e6, sim_accs=1e3, min_eth_amount=0.1, max
 
 
 # function to generate plots
-def plot_simulation(df, fontsize=35, figsize=(20, 40), linewidth=4, x_axis=3*['amounts'], y_axis=['monthly_reward', 'monthly_apr', 'yearly_apr'], usd_or_swise='SWISE', savefig=True):
+def plot_simulation(df, fontsize=35, figsize=(20, 40), linewidth=4, x_axis=3*['amounts'], y_axis=['monthly_reward', 'monthly_apr', 'yearly_apr'], usd_or_swise='SWISE', savefig=True, filename='simulation.png'):
     """
     df : dataframe to plot
     fontsize : font size for the figure axes/legend
@@ -93,7 +93,8 @@ def plot_simulation(df, fontsize=35, figsize=(20, 40), linewidth=4, x_axis=3*['a
     # rcParams
     plt.rcParams.update({
         'font.size': fontsize,
-        'figure.figsize': figsize
+        'figure.figsize': figsize,
+        'figure.facecolor': 'white'
     })
 
     # instantiating figure and axes
@@ -126,7 +127,7 @@ def plot_simulation(df, fontsize=35, figsize=(20, 40), linewidth=4, x_axis=3*['a
 
     # savefig
     if savefig == True:
-        fig.savefig('simulation.png', dpi=300, bbox_inches='tight')
+        fig.savefig(filename, dpi=50, bbox_inches='tight')
 
     # legend
     plt.show()
@@ -160,4 +161,4 @@ functions = {
 # running the functions
 df = simulate_curves(functions=functions, reward=6e6,
                      amounts_apply=lambda x: x, mult_swise=False)
-plot_simulation(df, figsize=(40, 70))
+plot_simulation(df, figsize=(40, 70), filename='simulation_complex.png')
