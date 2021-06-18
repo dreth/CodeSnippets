@@ -15,7 +15,7 @@ swise_price = cg.get_token_price(id='ethereum', contract_addresses='0x48c3399719
 # function to generate sample data
 
 
-def simulate_curves(functions, reward=1e6, sim_accs=1e3, min_eth_amount=0.1, max_eth_amount=1e3, swise_price=swise_price, eth_price=eth_price, amounts_apply=lambda x: x, mult_swise=True):
+def simulate_curves(functions, reward=1e6, sim_accs=1e3, min_eth_amount=0.1, max_eth_amount=1e3, swise_price=swise_price, eth_price=eth_price, amounts_apply=lambda x: x, mult_swise=True, amount_or_value='value'):
     """
     reward : amount of SWISE to allocate
     sim_accs : accounts to simulate the curves for
@@ -60,7 +60,7 @@ def simulate_curves(functions, reward=1e6, sim_accs=1e3, min_eth_amount=0.1, max
             funcname = ''
 
         # apply function to values
-        after_apply = function(sample_data['value'])
+        after_apply = function(sample_data[amount_or_value])
 
         # new theoretical percentage of pool after apply
         sample_data[f'new_perc_pool{funcname}'] = after_apply/sum(after_apply)
@@ -155,10 +155,10 @@ def quantile_flatten(col, functions=qtys*[np.power], quantiles=np.linspace(0.01,
 
 # functions to simulate for
 functions = {
-    'test': quantile_flatten
+    'test': lambda x: x**(5/8)
 }
 
 # running the functions
 df = simulate_curves(functions=functions, reward=6e6,
                      amounts_apply=lambda x: x, mult_swise=False)
-plot_simulation(df, figsize=(40, 70), filename='simulation_complex.png')
+plot_simulation(df, figsize=(40, 70), filename='test.png')
