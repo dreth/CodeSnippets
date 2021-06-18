@@ -1,6 +1,6 @@
 Hello StakeWise DAO! 
 
-Today I want to detail an [idea I mentioned](https://forum.stakewise.io/t/swip-3-deploy-seth2-eth-and-seth2-reth2-liquidity-pools-on-uniswap-v3/336/3?u=dreth) in my reply to this thread. Where I compared the possibility of flattening the $SWISE rewards curve for the upcoming Uniswap pools in order to avoid extending voting power inequality (as a result of wealth) within DAO members.
+Today I want to detail an [idea I mentioned](https://forum.stakewise.io/t/swip-3-deploy-seth2-eth-and-seth2-reth2-liquidity-pools-on-uniswap-v3/336/3?u=dreth) in my reply to the [SWIP-3](https://forum.stakewise.io/t/swip-3-deploy-seth2-eth-and-seth2-reth2-liquidity-pools-on-uniswap-v3). thread. Where I compared the possibility of flattening the $SWISE rewards curve for the upcoming Uniswap pools in order to avoid extending voting power inequality (as a result of wealth) within DAO members.
 
 I would like to start a discussion on this and see your opinions on possibly implementing this before $SWISE rewards start for the respective proposed pools in [SWIP-3](https://forum.stakewise.io/t/swip-3-deploy-seth2-eth-and-seth2-reth2-liquidity-pools-on-uniswap-v3).
 
@@ -26,9 +26,8 @@ I had 2 very random ideas which I quickly coded as to conceptually show how  the
 
 In this example the function applied is as follows:
 
-![x](./x.svg)
-
-![x](./example_func.svg)
+![x](https://raw.githubusercontent.com/dreth/CodeSnippets/master/simulate_SWISE_rewards_curve/x.svg)
+![x](https://raw.githubusercontent.com/dreth/CodeSnippets/master/simulate_SWISE_rewards_curve/example_func.svg)
 
 * Monthly rewards curve example
   * X-axis shows amounts the user has in the pool in ETH
@@ -56,4 +55,4 @@ In this example the function applied is as follows:
 
 ## Conclusion
 
-If there's anything to correct, if this isn't possible, if you notice any mistake (in the sample code or in the thread), please reply below. Would love to hear your thoughts (:
+If there's anything to correct, if this isn't possible, if you notice any mistake (in the sample code or in the thread), please reply below. Would love to hear your thoughts :eyes:
