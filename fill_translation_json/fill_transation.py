@@ -63,16 +63,17 @@ def translate(d):
                 if skip == False:
                     # ask for translation
                     if v[translation_language] != "":
-                        print(f"Current translation: {v[translation_language]}")
+                        print(f"\n{'Original English text:':<15} {v['en']:>15}")
+                        print(f"{'Current translation:':<15} {v[translation_language]:>25}\n")
                         while True:
-                            correct = input("Is this correct? (y/n): ")
-                            if correct in ['y','Y']:
+                            correct = input(f"{'Is this correct? (y/y*/n):':<15} ")
+                            if correct in ['y','Y','']:
                                 break
                             elif correct in ['y*','Y*']:
                                 items_to_recheck.append(k)
                                 break
                             elif correct in ['n','N']:
-                                v[translation_language] = input("New translation: ")
+                                v[translation_language] = input(f"\n{'New translation:':<15} {'':>8}")
                                 break
                             else:
                                 continue
@@ -80,16 +81,19 @@ def translate(d):
                     # if translation not present, ask for translation
                     else:
                         while True:
-                            v[translation_language] = input("Translation: ")
-                            print(f'\nYou wrote:\n{v[translation_language]}\n')
-                            correct = input("Is this correct? (y/n): ")
-                            if correct in ['y','Y']:
+                            print(f"\n{'Original English text:':<15} {v['en']:>18}")
+                            v[translation_language] = input(f"{'Translation:':<15} {'':>12}")
+                            print(f"\n{'You wrote:':<15} {v[translation_language]:>20}\n")
+                            correct = input(f"\{'Is this correct? (y/y*/n):':<15} ")
+                            if correct in ['y','Y','']:
                                 break
                             elif correct in ['y*','Y*']:
                                 items_to_recheck.append(k)
                                 break
                             elif correct in ['n','N']:
                                 continue
+                else:
+                    v[translation_language] = "MISSING TRANSLATION"
             
             # continue traversing the dict recursively
             else:
