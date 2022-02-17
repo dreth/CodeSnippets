@@ -92,8 +92,17 @@ def translate(d):
                                 break
                             elif correct in ['n','N']:
                                 continue
+                    
+                    # update the json as it goes
+                    with open(json_filename, 'w') as f:
+                        json.dump(translation_json, f, ensure_ascii=False, indent='	')
+
                 else:
-                    v[translation_language] = "MISSING TRANSLATION"
+                    # keep translated stuff that would normally be untranslated
+                    if v[translation_language] not in ["MISSING TRANSLATION",""]:
+                        pass
+                    else:
+                        v[translation_language] = "MISSING TRANSLATION"
             
             # continue traversing the dict recursively
             else:
@@ -103,10 +112,6 @@ def translate(d):
 
 # run the function
 translation_json, missed_translations_due_to_UI_elements, items_to_recheck = translate(translation_json)
-
-# dump json to file
-with open(json_filename, 'w') as f:
-    json.dump(translation_json, f, ensure_ascii=False, indent='	')
 
 # save missed ui elements
 with open('missed','a') as f:
