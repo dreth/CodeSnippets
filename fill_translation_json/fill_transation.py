@@ -1,5 +1,29 @@
 import json
 import os
+import argparse
+
+# disable re-checking, can be enabled with --recheck or -r flags
+no_recheck = False
+
+# parsing some console arguments for easy cli operation
+parser = argparse.ArgumentParser(description="CLI options", formatter_class=argparse.RawTextHelpFormatter)
+
+# flags
+parser.add_argument('-r', '--recheck', type=str,  help='This option allows you to skip checking already translated stuff, False skips it (default), True will re-check and allow you to modify one by one')
+
+# parse arguments
+args = parser.parse_args()
+
+# modify recheck parameter if specified in cli
+if args.recheck:
+    if args.recheck not in ['True','true','False','false']:
+        print('recheck must be True or False')
+        exit()
+    else:
+        if args.recheck in ['True', 'true']:
+            no_recheck = True
+        else:
+            no_recheck = False
 
 # check json files in current folder and only keep those of length 7, so an ISO alpha-2 language code like 'es' plu '.json' 
 if len(os.listdir()) == 0:
@@ -62,7 +86,7 @@ def translate(d):
                 
                 if skip == False:
                     # ask for translation
-                    if v[translation_language] != "":
+                    if v[translation_language] != "" and no_recheck != False:
                         print(f"\n{'Original English text:':<22} {v['en']:15}")
                         print(f"{'Current translation:':<22} {v[translation_language]:15}\n")
                         while True:
@@ -70,6 +94,7 @@ def translate(d):
                             if correct in ['y','Y','']:
                                 break
                             elif correct in ['y*','Y*']:
+                                v[translation_language] += 'RECHECK'
                                 items_to_recheck.append(k)
                                 break
                             elif correct in ['n','N']:
@@ -79,7 +104,7 @@ def translate(d):
                                 continue
                     
                     # if translation not present, ask for translation
-                    else:
+                    elif v[translation_language] == "":
                         while True:
                             print(f"\n{'Original English text:':<22} {v['en']}")
                             v[translation_language] = input(f"{'Translation:':<22} {''}")
@@ -88,6 +113,7 @@ def translate(d):
                             if correct in ['y','Y','']:
                                 break
                             elif correct in ['y*','Y*']:
+                                v[translation_language] += 'RECHECK'
                                 items_to_recheck.append(k)
                                 break
                             elif correct in ['n','N']:
@@ -113,12 +139,18 @@ def translate(d):
 # run the function
 translation_json, missed_translations_due_to_UI_elements, items_to_recheck = translate(translation_json)
 
-# save missed ui elements
-with open('missed','a') as f:
-    for item in missed_translations_due_to_UI_elements: 
-        f.write(f'{item}\n')
+try:
+    # save missed ui elements
+    with open('missed','a') as f:
+        for item in missed_translations_due_to_UI_elements: 
+            f.write(f'{item}\n')
 
-# save items to re-check
-with open('recheck','a') as f:
-    for item in items_to_recheck:
-        f.write(f'{item}\n')
+    # save items to re-check
+    with open('recheck','a') as f:
+        for item in items_to_recheck:
+            f.write(f'{item}\n')
+except:
+    pass
+
+# done
+print("Done translating!")
