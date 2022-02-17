@@ -63,17 +63,17 @@ def translate(d):
                 if skip == False:
                     # ask for translation
                     if v[translation_language] != "":
-                        print(f"\n{'Original English text:':<22} {v['en']:>15}")
-                        print(f"{'Current translation:':<22} {v[translation_language]:>16}\n")
+                        print(f"\n{'Original English text:':<22} {v['en']:15}")
+                        print(f"{'Current translation:':<22} {v[translation_language]:15}\n")
                         while True:
-                            correct = input(f"{'Is this correct? (y/y*/n):':<15} ")
+                            correct = input(f"{'Is this correct? (y/y*/n):':<22} ")
                             if correct in ['y','Y','']:
                                 break
                             elif correct in ['y*','Y*']:
                                 items_to_recheck.append(k)
                                 break
                             elif correct in ['n','N']:
-                                v[translation_language] = input(f"\n{'New translation:':<15} {'':>8}")
+                                v[translation_language] = input(f"\n{'New translation:':<22} {''}")
                                 break
                             else:
                                 continue
@@ -81,10 +81,10 @@ def translate(d):
                     # if translation not present, ask for translation
                     else:
                         while True:
-                            print(f"\n{'Original English text:':<15} {v['en']:>18}")
-                            v[translation_language] = input(f"{'Translation:':<15} {'':>12}")
+                            print(f"\n{'Original English text:':<22} {v['en']}")
+                            v[translation_language] = input(f"{'Translation:':<22} {''}")
                             print(f"\nYou wrote: {v[translation_language]}\n")
-                            correct = input(f"{'Is this correct? (y/y*/n):':<15} ")
+                            correct = input(f"{'Is this correct? (y/y*/n):':<22} ")
                             if correct in ['y','Y','']:
                                 break
                             elif correct in ['y*','Y*']:
