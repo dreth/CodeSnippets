@@ -63,8 +63,8 @@ def translate(d):
                 if skip == False:
                     # ask for translation
                     if v[translation_language] != "":
-                        print(f"\n{'Original English text:':<15} {v['en']:>15}")
-                        print(f"{'Current translation:':<15} {v[translation_language]:>25}\n")
+                        print(f"\n{'Original English text:':<22} {v['en']:>15}")
+                        print(f"{'Current translation:':<22} {v[translation_language]:>16}\n")
                         while True:
                             correct = input(f"{'Is this correct? (y/y*/n):':<15} ")
                             if correct in ['y','Y','']:
@@ -83,8 +83,8 @@ def translate(d):
                         while True:
                             print(f"\n{'Original English text:':<15} {v['en']:>18}")
                             v[translation_language] = input(f"{'Translation:':<15} {'':>12}")
-                            print(f"\n{'You wrote:':<15} {v[translation_language]:>20}\n")
-                            correct = input(f"\{'Is this correct? (y/y*/n):':<15} ")
+                            print(f"\nYou wrote: {v[translation_language]}\n")
+                            correct = input(f"{'Is this correct? (y/y*/n):':<15} ")
                             if correct in ['y','Y','']:
                                 break
                             elif correct in ['y*','Y*']:
