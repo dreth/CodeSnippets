@@ -40,6 +40,7 @@ def load_input_file():
         # check if it's a plaintext file
         try:
             df = pd.read_csv(args.input_file, sep=args.input_separator, index_col=False)
+            df = df.convert_dtypes()
             if 'Unnamed: 0' in df.columns:
                 return df.drop('Unnamed: 0', axis=1)
             else:
