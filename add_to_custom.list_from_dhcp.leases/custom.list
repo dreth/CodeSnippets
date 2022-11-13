@@ -1,0 +1,7 @@
+10.0.0.1 site.local
+10.0.0.2 server.home
+10.0.0.0 server.local
+10.0.0.1 home.local
+10.0.0.1 domain1.local
+10.0.0.2 domain2.local
+10.0.0.1 domain1-cool.local

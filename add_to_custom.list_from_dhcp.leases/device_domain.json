@@ -1,0 +1,14 @@
+{
+    "devices":[
+        "device1",
+        "device2",
+        "device1",
+        "device1"
+    ],
+    "domains":[
+        "domain1.local",
+        "domain2.local",
+        "domain1-cool.local",
+        "home.local"
+    ]
+}
