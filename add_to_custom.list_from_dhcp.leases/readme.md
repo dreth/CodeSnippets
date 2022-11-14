@@ -7,3 +7,5 @@ New domains can be added to `device_domain.json`, the `devices` key should use t
 The only point of this script is keeping updated custom.list in case a dhcp lease changes. It doesn't have to ever change if the lease is fixed. But if having a local device under a specific domain in local dns is mission critical, then this could prove useful.
 
 I also think it's fun to play around with this kind of stuff, so I guess that makes any project worthwhile no matter how useless.
+
+Since this script intends to modify a file in the `/etc/` directory, you should modify its permissions with `chmod` so you don't have to run the script with administrative privileges.
