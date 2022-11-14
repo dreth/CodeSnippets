@@ -64,9 +64,13 @@ def pair_devices_with_domain():
             custom_dict[i] = (leases_dict[devices[idx]],custom_dict[i][1])
     
     for device,domain in devices_domains:
-        if domain not in list(zip(*custom_dict))[1]:
+        try:
+            if domain not in list(zip(*custom_dict))[1]:
+                custom_dict.append((leases_dict[device],domain))
+        except:
             custom_dict.append((leases_dict[device],domain))
-    
+
+
     # return the items to append to custom.list
     return custom_dict
 
